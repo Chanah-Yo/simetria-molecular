@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Simetria Molecular</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" >
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>🔬 Análise de Simetria Molecular</h1>
+    <!-- <button onclick="injetarExemplo()">💉 Injetar Exemplo de Grupo</button> -->
+    <div class="container">
+        <h2><label for="molecula">1. Escolha a Molécula</label></h2>
+        <select id="moleculaSelect">
+            <option value="">Selecione uma molécula ...</option>
+            <option value="benzeno">Benzeno (C6H6)</option>
+            <option value="etano_eclipsado">Etano Eclipsado (C2H6)</option>
+            <option value="etano_estrelado">Etano Estrelado (C2H6)</option>
+            <option value="metano">Metano (CH4)</option>
+            <option value="hexafluoreto_enxofre">Hexafluoreto de Enxofre (SF6)</option>
+            <option value="outro">Outra (especifique)</option>
+        </select>
+        <textarea id="moleculaOutput" placeholder="Coordenadas xyz ..." readonly ></textarea>
+    </div> 
+
+    <!-- Container principal -->
+    <div class="container">
+        <h2>2. Selecione a Análise</h2>
+
+        <!-- Menu horizontal de seleção -->
+        <div class="render-menu">
+          <label>
+            <input type="radio" name="renderTipo" value="texto" checked onchange="trocarRender()">
+            📝 Texto
+          </label>
+          <label>
+            <input type="radio" name="renderTipo" value="grafico" onchange="trocarRender()">
+            🧪 Gráfico
+          </label>
+        </div>
+
+    <!-- Área que será dinamicamente atualizada -->
+    <div id="renderOpcoes" class="render-opcoes">
+        
+        <!-- Renderização tipo texto -->
+        <div id="render-texto">
+          <h3>Análises Desejadas:</h3>
+          <label><input type="checkbox" name="analises" value="grupo" checked>Identificação do Grupo de Simetria</label><br>
+          <label><input type="checkbox" name="analises" value="permutacoes" checked>Permutações</label><br>
+          <label><input type="checkbox" name="analises" value="tabela_multiplicacao">Tabela de multiplicação</label><br>
+          <label><input type="checkbox" name="analises" value="classes_conjugacao">Classes de conjugação</label><br>
+          <label><input type="checkbox" name="analises" value="tabela_caracteres" disabled>Representação por caracteres (Em breve)</label><br>
+          <label><input type="checkbox" name="analises" value="auto_valores" disabled>Autovalores das operações (Em breve)</label><br>
+          <label><input type="checkbox" name="analises" value="subgrupos" disabled>Subgrupos (Em breve)</label><br>
+          <label><input type="checkbox" name="analises" value="ciclico" disabled>Cíclico (Em breve)</label><br>
+          <label><input type="checkbox" name="analises" value="abeliano" disabled>Abeliano (Em breve)</label><br>
+
+          <h3>Formato de Saída:</h3>
+          <label><input type="radio" name="formatoTexto" value="tex" checked> TeX</label><br>
+          <label><input type="radio" name="formatoTexto" value="pdf"> PDF</label><br>
+        </div>
+
+        <!-- Renderização tipo gráfico -->
+        <div id="render-grafico" style="display: none;">
+          <h3>Formato Gráfico:</h3>
+          <label><input type="radio" name="formatoGrafico" value="3d" checked> 3D Interativo</label><br>
+          <label><input type="radio" name="formatoGrafico" value="gif" disabled> GIF (Em breve)</label><br>
+
+          <h3>Paleta de Cores:</h3>
+          <label><input type="radio" name="paletaCores" value="PASTEL" checked> 🎨 Pastel</label><br>
+          <label><input type="radio" name="paletaCores" value="VIBRANTE"> 🌈 Vibrante</label><br>
+          <label><input type="radio" name="paletaCores" value="MONOCROMATICA"> 🩶 Monocromática</label><br>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <h2><label for="acoes">3. Ações</label></h2>
+    <div class="acoes-container" style="display: flex; justify-content: center; margin-top: 32px;">
+        <button id="botaoAnalise" style="
+        width: 220px;
+        padding: 10px 16px;
+        font-size: 14px;
+        background: linear-gradient(135deg, #fddde6, #f3c6d3);
+        color: #333;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 3px 6px rgba(243, 198, 211, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;">
+        💫 Analisar Simetria
+    </button>
+    </div>
+
+    <div class="container">
+        <h2> Resultado: </h2>
+        <textarea id="resultadoOutput" readonly ></textarea>
+    </div>
+
+    <form id="form-analise" enctype="multipart/form-data">
+      <input type="file" id="input-molecula" name="molecula" hidden>
+      <input type="file" id="input-grupo" name="grupo" hidden>
+    </form>
+</body>
+<script src="js/app.js" defer></script>
+</html>
