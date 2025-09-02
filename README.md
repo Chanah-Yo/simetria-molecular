@@ -1,1 +1,1 @@
-Acesso em: https://naavilam.github.io/simetria-molecular
+Acesso em: https://chanah-yo.github.io/simetria-molecular
